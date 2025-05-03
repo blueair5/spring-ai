@@ -1,0 +1,10 @@
+spring:
+  ai:
+    openai:
+      embedding: false
+      api-key: sk-9cfd3f2341c24a3bb27b805b5dc02da5
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.7
