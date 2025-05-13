@@ -5,6 +5,7 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -34,6 +35,9 @@ public class ChatClientController {
 
 	@GetMapping("/ai/chatResponse")
 	String generationChatResponse(String userInput) {
+		// https://www.cnblogs.com/kohler21/p/17555985.html 参考 record 的用法
+		record ActorFilms(String actor, List<String> movies) {
+		}
 		ChatResponse chatResponse = chatClient.prompt()
 			.user(userInput)
 			.call()
