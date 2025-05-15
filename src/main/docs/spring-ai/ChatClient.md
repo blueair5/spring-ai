@@ -7,7 +7,7 @@ sequenceDiagram
     autonumber
     actor user
 
-    box lightblue AI-Server and Func-Store
+    box black AI-Server and Func-Store
     participant AI-Server
     participant Func-Store
     end
@@ -24,3 +24,8 @@ sequenceDiagram
 
     AI-Server -->> user: 返回用户结果
 ```
+
+将函数库和用户需求给到 AI，让 AI 选择 URL，并生成对应的响应。
+（从函数库）找到对应的 URL，返回内容。
+
+通过接口调用业务服务，业务服务应该给出明确的返回和内容。
