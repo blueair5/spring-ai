@@ -57,7 +57,7 @@ public class ChaClientController {
 		String embellishResponse = chatClient.prompt(embellishPrompt)
 				.user(userInput)
 				.call()
-				.entity(String.class);
+				.content();
 		// 7. 返回给客户
 		return embellishResponse;
 	}
@@ -67,7 +67,7 @@ public class ChaClientController {
 	 * @return
 	 */
 	private Map<String, String> getFunctionLibrary() {
-		return Map.of("获取一个人这个月的报销单数据", "http://getBills");
+		return Map.of("获取一个人这个月的报销单数据", "http://localhost:8088/pty/pex/labour/ai/idNo");
 	}
 
 	/**
@@ -114,12 +114,13 @@ public class ChaClientController {
 		headers.setContentType(type);
 		headers.add("Accept", MediaType.APPLICATION_JSON.toString());
 		HashMap<String, Object> queryBody = new HashMap<>();
-		queryBody.put("userCode", userCode);
+		queryBody.put("idNo", userCode);
 		// 这里对年度进行修正, AI 模型给出的年度可能是因为模型的时间问题, 需要进行修正
 		queryBody.put("fiscal", "2025");
 		String stu = JSON.toJSONString(queryBody);
 		HttpEntity<String> formEntity = new HttpEntity<String>(stu, headers);
 		String businessResponse = restTemplate.postForObject(callRecord.url(), formEntity, String.class);
+		System.out.println("businessResponse = " + businessResponse);
 		return new BusinessRecord(200, businessResponse);
 	}
 

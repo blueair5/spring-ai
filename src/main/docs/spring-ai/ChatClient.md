@@ -20,7 +20,9 @@ sequenceDiagram
 
 
     AI-Server ->> Business-Server: 发起业务函数调用
-    Business-Server -->> AI-Server: AI 进行润色，然后美化
+    Business-Server -->> AI-Server: 返回业务数据
+    
+    AI-Server ->> AI-Server: AI 针对结果进行美化 
 
     AI-Server -->> user: 返回用户结果
 ```
@@ -28,4 +30,4 @@ sequenceDiagram
 将函数库和用户需求给到 AI，让 AI 选择 URL，并生成对应的响应。
 （从函数库）找到对应的 URL，返回内容。
 
-通过接口调用业务服务，业务服务应该给出明确的返回和内容。
+通过接口调用业务服务，业务服务应该给出明确的返回和内容。业务函数返回的内容，应该是固定的。一个 `String` 的字符串。 
