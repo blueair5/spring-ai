@@ -67,7 +67,9 @@ public class ChaClientController {
 	 * @return
 	 */
 	private Map<String, String> getFunctionLibrary() {
-		return Map.of("获取一个人这个月的报销单数据", "http://localhost:8088/pty/pex/labour/ai/idNo");
+		return Map.of("获取一个人这个月的报销单数据", "http://localhost:8088/pty/pex/labour/ai/idNo",
+			          "获取一个人这个月的差旅费单据数据", "http://localhost:8088/pty/pex/travel/ai/travel"
+					);
 	}
 
 	/**
@@ -130,5 +132,15 @@ public class ChaClientController {
 
 	record BusinessRecord(Integer code, String message) {
 
+	}
+
+	@GetMapping("/ai")
+	Map<String, String> completion(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message, String voice) {
+		return Map.of("completion",
+			this.chatClient.prompt()
+				.system(sp -> sp.param("voice", voice))
+				.user(message)
+				.call()
+				.content());
 	}
 }

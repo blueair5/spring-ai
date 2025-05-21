@@ -27,7 +27,6 @@ sequenceDiagram
     AI-Server -->> user: 返回用户结果
 ```
 
-将函数库和用户需求给到 AI，让 AI 选择 URL，并生成对应的响应。
-（从函数库）找到对应的 URL，返回内容。
+### Question:
 
-通过接口调用业务服务，业务服务应该给出明确的返回和内容。业务函数返回的内容，应该是固定的。一个 `String` 的字符串。 
+* Srping-ai 是怎么将 `String` 的内容转换成 `Entity` 的。
